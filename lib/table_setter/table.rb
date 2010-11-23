@@ -259,5 +259,20 @@ class TableFu::Formatting
       args.join(", ")
     end
 
+    # take a ratio and make it a percent
+    def percent(cell)
+        "%.2f%" % (Float(cell)*100)
+    end
+
+    # format a float as a dollar amount
+    def dollars(cell)
+        if cell
+            figure = "%.2f" % Float(cell)
+            "$&nbsp;%s" % figure.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
+        else
+            "$&nbsp;0.00"
+        end
+    end
+
   end
 end
